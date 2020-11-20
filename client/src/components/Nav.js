@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     padding: '20px 10px',
     background: '#24252A',
+    fontFamily: "Fira Sans, sans-serif"
   },
   navList: {
     listStyle: 'none',
@@ -33,6 +34,8 @@ const useStyles = makeStyles(theme => ({
       padding: '0 20px',
       '& > a': {
         transition: 'all 0.3s ease 0s',
+        color: '#edf0f1',
+        textDecoration: 'none',
         '&:hover': {
           color: '#0088a9'
         }
@@ -41,6 +44,7 @@ const useStyles = makeStyles(theme => ({
   },
   rightButton: {
     padding: '9px 25px',
+    color: '#edf0f1',
     backgroundColor: 'rgba(0,136,169,1)',
     border: 'none',
     borderRadius: '50px',

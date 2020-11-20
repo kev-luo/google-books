@@ -23,6 +23,6 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
   },
   jumbotron: {
-    padding: '40px 0',
+    padding: '30px 0',
   }
 }))
