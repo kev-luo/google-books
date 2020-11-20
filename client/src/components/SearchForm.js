@@ -7,10 +7,10 @@ export default function SearchForm() {
   return (
     <Container className={classes.root}>
       <Paper className={classes.formContainer}>
-        <form>
+        <form className={classes.form}>
           <h3>Book Search</h3>
           <TextField fullWidth label="Book Title"/>
-          <Button type="submit">Search</Button>
+          <Button type="submit" variant="contained" className={classes.button} >Search</Button>
         </form>
       </Paper>
     </Container>
@@ -22,6 +22,18 @@ const useStyles = makeStyles(theme => ({
     marginTop: '20px',
   },
   formContainer: {
-    padding: '30px'
+    padding: '20px'
+  },
+  form: {
+    '& > *': {
+      margin: theme.spacing(1),
+    }
+  },
+  button: {
+    backgroundColor: "rgb(0,136,169)",
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: "rgba(0,136,169,0.8)"
+    }
   }
 }))
