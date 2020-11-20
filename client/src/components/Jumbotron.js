@@ -4,11 +4,25 @@ import { Container, Paper } from '@material-ui/core';
 
 
 export default function Jumbotron() {
+  const classes=useStyles();
   return (
-    <Container>
-      <Paper>
-        <p>hello</p>
+    <Container className={classes.root}>
+      <Paper className={classes.jumbotron}>
+        <h1 className={classes.title}>(React) Google Books Search</h1>
+        <h2 className={classes.title}>Search for and save books of interest</h2>
       </Paper>
     </Container>
   )
 }
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    marginTop: '20px',
+  },
+  title: {
+    textAlign: 'center',
+  },
+  jumbotron: {
+    padding: '40px 0',
+  }
+}))
