@@ -1,5 +1,22 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+
+export default function Nav() {
+  const classes = useStyles();
+  return (
+    <div className={classes.root}>
+      <nav>
+        <ul className={classes.navList}>
+          <li><Link to="/" >Google Books</Link></li>
+          <li><Link to="/" >Search</Link></li>
+          <li><Link to="/saved" >Saved</Link></li>
+        </ul>
+      </nav>
+      <a href="#"><button className={classes.rightButton} >Hello</button></a>
+    </div>
+  )
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,19 +51,3 @@ const useStyles = makeStyles(theme => ({
     }
   }
 }))
-
-export default function Nav() {
-  const classes = useStyles();
-  return (
-    <div className={classes.root}>
-      <nav>
-        <ul className={classes.navList}>
-          <li><a href="#" >Google Books</a></li>
-          <li><a href="#" >Search</a></li>
-          <li><a href="#" >Saved</a></li>
-        </ul>
-      </nav>
-      <a href="#"><button className={classes.rightButton} >Hello</button></a>
-    </div>
-  )
-}
