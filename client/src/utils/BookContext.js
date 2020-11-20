@@ -22,6 +22,17 @@ function reducer(state, { type, payload }) {
         searchResults: payload,
         loading: false,
       }
+    case Actions.VIEW_BOOK:
+      return {
+        ...state,
+        bookDetails: payload,
+        loading: false,
+      }
+    case Actions.LOADING:
+      return {
+        ...state,
+        loading: true
+      }
     default: 
       return state
   }

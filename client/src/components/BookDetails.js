@@ -8,7 +8,6 @@ export default function BookDetails() {
   const classes = useStyles();
   const { state } = useBookContext();
   const { searchResults, loading } = state;
-  console.log(loading);
 
   return (
     <>
@@ -50,10 +49,10 @@ export default function BookDetails() {
                 </Grid>
                 <Grid item container spacing={2} xs={12}>
                   <Grid item xs={2}>
-                    <p>image here</p>
+                    <img src={result.imageLinks.smallThumbnail} alt={result.title} />
                   </Grid>
-                  <Grid item>
-                    <p>description</p>
+                  <Grid item xs={10}>
+                    <p>{result.description}</p>
                   </Grid>
                 </Grid>
               </Grid>
