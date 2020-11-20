@@ -8,20 +8,20 @@ import { useBookContext } from '../utils/BookContext';
 
 export default function SearchForm() {
   const classes = useStyles();
-  const { state, dispatch } = useBookContext();
+  const { dispatch } = useBookContext();
   const [title, setTitle] = useState('');
 
   const handleChange = e => {
     const { value } = e.target;
     setTitle(value);
-    console.log(title);
   }
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const bookResults = await API.searchTitle(title);
+    const { data } = await API.searchTitle(title);
+    const bookResults = data.map(result => result.volumeInfo)
     dispatch({type: Actions.SEARCH_RESULTS, payload: bookResults })
-    console.log(state.searchResults)
+    setTitle('');
   }
 
   return (

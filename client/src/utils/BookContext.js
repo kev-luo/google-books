@@ -11,7 +11,7 @@ const initialState = {
     image: '',
     link: '',
   },
-  loading: false,
+  loading: true,
 }
 
 function reducer(state, { type, payload }) {
@@ -20,6 +20,7 @@ function reducer(state, { type, payload }) {
       return {
         ...state,
         searchResults: payload,
+        loading: false,
       }
     default: 
       return state
