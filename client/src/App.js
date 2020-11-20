@@ -7,17 +7,20 @@ import Saved from './pages/Saved';
 import SingleBook from './pages/SingleBook';
 import Nav from './components/Nav';
 import Jumbotron from './components/Jumbotron';
+import { BookProvider } from './utils/BookContext';
 
 export default function App() {
   return (
     <Router>
       <Nav />
       <Jumbotron />
-      <Switch>
-        <Route exact path="/" component={Search} />
-        <Route exact path="/saved" component={Saved} />
-        <Route exact path="/book/:id" component={SingleBook} />
-      </Switch>
+      <BookProvider>
+        <Switch>
+          <Route exact path="/" component={Search} />
+          <Route exact path="/saved" component={Saved} />
+          <Route exact path="/book/:id" component={SingleBook} />
+        </Switch>
+      </BookProvider>
     </Router>
   )
 }

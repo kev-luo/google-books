@@ -1,4 +1,5 @@
 import React, { useContext, useReducer } from 'react';
+import Actions from './Actions';
 
 const initialState = {
   searchResults: [],
@@ -15,7 +16,7 @@ const initialState = {
 
 function reducer(state, { type, payload }) {
   switch(type) {
-    case "SEARCH_TITLE":
+    case Actions.SEARCH_RESULTS:
       return {
         ...state,
         searchResults: payload,

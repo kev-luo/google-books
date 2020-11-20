@@ -13,7 +13,6 @@ export default function Nav() {
           <li><Link to="/saved" >Saved</Link></li>
         </ul>
       </nav>
-      <a href="#"><button className={classes.rightButton} >Hello</button></a>
     </div>
   )
 }
