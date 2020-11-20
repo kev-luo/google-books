@@ -1,16 +1,22 @@
 const express = require('express');
+const Book = require('../models/Book');
 const router = express.Router();
 
 router.get('/books', async (req, res) => {
-  res.sendStatus(200);
+  const books = await Book.find({});
+  res.json(books);
 })
 
 router.post('/books', async (req, res) => {
-  res.sendStatus(200);
+  const bookDetails = req.body;
+  const newBook = await new Book(bookDetails).save().exec();
+  res.json(newBook);
 })
 
-router.get('/books/:id', async (req, res) => {
-  res.sendStatus(200);
+router.delete('/books/:id', async (req, res) => {
+  const bookId = req.params.id;
+  await Book.deleteOne({_id: bookId})
+  res.send('Book deleted');
 })
 
 module.exports = router;
