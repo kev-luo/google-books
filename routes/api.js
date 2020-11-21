@@ -3,20 +3,32 @@ const Book = require('../models/Book');
 const router = express.Router();
 
 router.get('/books', async (req, res) => {
-  const books = await Book.find({});
-  res.json(books);
+  try {
+    const books = await Book.find({});
+    res.json(books);
+  } catch(err) {
+    res.status(422).json(err)
+  }
 })
 
 router.post('/books', async (req, res) => {
-  const bookDetails = req.body;
-  const newBook = await new Book(bookDetails).save();
-  res.json(newBook);
+  try {
+    const bookDetails = req.body;
+    const newBook = await new Book(bookDetails).save();
+    res.json(newBook);
+  } catch(err) {
+    res.status(422).json(err)
+  }
 })
 
 router.delete('/books/:id', async (req, res) => {
-  const bookId = req.params.id;
-  await Book.deleteOne({_id: bookId})
-  res.send('Book deleted');
+  try {
+    const bookId = req.params.id;
+    const deletedBook = await Book.deleteOne({_id: bookId})
+    res.json(deletedBook);
+  } catch(err) {
+    res.status(422).json(err)
+  }
 })
 
 module.exports = router;

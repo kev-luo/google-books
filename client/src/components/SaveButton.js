@@ -11,8 +11,10 @@ export default function SaveButton({ book }) {
   const {dispatch} = useBookContext();
   const location = window.location.pathname;
 
-  const handleDelete = async() => {
-
+  const handleDelete = async(bookId) => {
+    dispatch({type: Actions.LOADING})
+    await API.deleteBook(bookId);
+    dispatch({type: Actions.DELETE_BOOK, payload: bookId})
   }
 
   const handleSave = async({ title, authors, description, image, link }) => {
@@ -29,7 +31,7 @@ export default function SaveButton({ book }) {
   return (
     <>
     {location === '/saved' ? (
-      <Button variant="contained" onClick={() => handleDelete(book)}>
+      <Button variant="contained" onClick={() => handleDelete(book._id)}>
         Unsave
       </Button>
     ) : (
