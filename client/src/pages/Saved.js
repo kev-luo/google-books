@@ -2,10 +2,10 @@ import React from 'react'
 
 import BooksContainer from '../components/BooksContainer';
 
-export default function Saved(props) {
+export default function Saved() {
   return (
     <div>
-      <BooksContainer location={props.location.pathname}/>
+      <BooksContainer/>
     </div>
   )
 }

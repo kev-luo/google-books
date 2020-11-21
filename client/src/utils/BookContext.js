@@ -32,6 +32,12 @@ function reducer(state, { type, payload }) {
         ...state,
         savedBooks: [...state.savedBooks, payload]
       }
+    case Actions.GET_SAVED_BOOKS:
+      return {
+        ...state,
+        savedBooks: payload,
+        loading: false,
+      }
     default: 
       return state
   }

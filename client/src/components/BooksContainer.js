@@ -1,37 +1,41 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import BookDetails from './BookDetails';
+import Actions from '../utils/Actions';
+import API from '../utils/API';
 import { useBookContext } from '../utils/BookContext';
 
-export default function BooksContainer({location}) {
+export default function BooksContainer() {
   const classes = useStyles();
-  const { state } = useBookContext();
+  const { state, dispatch } = useBookContext();
   const { savedBooks, searchResults, loading } = state;
+  const location = window.location.pathname;
 
-  const searchBooks = searchResults.map(result => {
-    return {
-      title: result.title,
-      authors: result.authors,
-      description: result.description,
-      image: result.imageLinks.smallThumbnail,
-      link: result.infoLink,
-    }
-  })
+  async function getSavedBooks() {
+    dispatch({ type: Actions.LOADING })
+    const { data } = await API.getBooks();
+    dispatch({ type: Actions.GET_SAVED_BOOKS, payload: data })
+  }
+
+  useEffect(() => {
+    getSavedBooks();
+  }, [])
 
   return (
     <Container className={classes.root}>
       <Paper className={classes.resultsContainer}>
-        {location ? (
+        {location === '/saved' ? (
           <>
             <h3>Saved Books</h3>
             <BookDetails books={savedBooks} loading={loading}/>
           </>
         ) : (
+
           <>
             <h3>Results</h3>
-            <BookDetails books={searchBooks} loading={loading}/>
+            <BookDetails books={searchResults} loading={loading}/>
           </>
         )}
       </Paper>

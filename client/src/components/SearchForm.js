@@ -19,7 +19,16 @@ export default function SearchForm() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     const { data } = await API.searchTitle(title);
-    const bookResults = data.map(result => result.volumeInfo)
+    const response = data.map(result => result.volumeInfo)
+    const bookResults = response.map(book => {
+      return {
+        title: book.title,
+        authors: book.authors,
+        description: book.description,
+        image: book.imageLinks.smallThumbnail,
+        link: book.infoLink,
+      }
+    })
     dispatch({type: Actions.SEARCH_RESULTS, payload: bookResults })
     setTitle('');
   }
