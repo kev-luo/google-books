@@ -11,7 +11,7 @@ const initialState = {
     image: '',
     link: '',
   },
-  loading: true,
+  loading: false,
 }
 
 function reducer(state, { type, payload }) {
@@ -30,7 +30,8 @@ function reducer(state, { type, payload }) {
     case Actions.SAVE_BOOK:
       return {
         ...state,
-        savedBooks: [...state.savedBooks, payload]
+        savedBooks: [...state.savedBooks, payload],
+        loading: false,
       }
     case Actions.GET_SAVED_BOOKS:
       return {
@@ -46,6 +47,14 @@ function reducer(state, { type, payload }) {
         ...state,
         savedBooks: filteredBooks,
         loading: false,
+      }
+    case Actions.UPDATE_SEARCH_RESULTS:
+      const updatedBooks = state.searchResults.filter(book => {
+        return book !== payload
+      })
+      return {
+        ...state,
+        searchResults: updatedBooks
       }
     default: 
       return state
