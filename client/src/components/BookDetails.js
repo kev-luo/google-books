@@ -3,11 +3,23 @@ import { Paper, Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { useBookContext } from "../utils/BookContext";
+import API from '../utils/API';
 
 export default function BookDetails() {
   const classes = useStyles();
   const { state } = useBookContext();
   const { searchResults, loading } = state;
+
+  const handleSave = async({ title, authors, description, imageLinks, infoLink }) => {
+    const savedBook = await API.saveBook({
+      image: imageLinks.smallThumbnail,
+      link: infoLink,
+      title,
+      authors,
+      description,
+    })
+    console.log(savedBook);
+  }
 
   return (
     <>
@@ -18,8 +30,8 @@ export default function BookDetails() {
       ) : (
         searchResults.map((result) => {
           return (
-            <Paper className={classes.root}>
-              <Grid container key={result.title}>
+            <Paper className={classes.root} key={result.industryIdentifiers[1]['identifier']}>
+              <Grid container>
                 <Grid
                   item
                   container
@@ -32,7 +44,7 @@ export default function BookDetails() {
                   </Grid>
                   <Grid item className={classes.buttons}>
                     <Button variant="contained">View</Button>
-                    <Button variant="contained">Save</Button>
+                    <Button variant="contained" onClick={() => handleSave(result)}>Save</Button>
                   </Grid>
                 </Grid>
                 <Grid item container xs={12}>

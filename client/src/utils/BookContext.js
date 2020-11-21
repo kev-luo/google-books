@@ -16,22 +16,16 @@ const initialState = {
 
 function reducer(state, { type, payload }) {
   switch(type) {
+    case Actions.LOADING:
+      return {
+        ...state,
+        loading: true
+      }
     case Actions.SEARCH_RESULTS:
       return {
         ...state,
         searchResults: payload,
         loading: false,
-      }
-    case Actions.VIEW_BOOK:
-      return {
-        ...state,
-        bookDetails: payload,
-        loading: false,
-      }
-    case Actions.LOADING:
-      return {
-        ...state,
-        loading: true
       }
     default: 
       return state

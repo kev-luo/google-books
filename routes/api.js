@@ -9,7 +9,7 @@ router.get('/books', async (req, res) => {
 
 router.post('/books', async (req, res) => {
   const bookDetails = req.body;
-  const newBook = await new Book(bookDetails).save().exec();
+  const newBook = await new Book(bookDetails).save();
   res.json(newBook);
 })
 
