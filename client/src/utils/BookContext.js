@@ -27,6 +27,11 @@ function reducer(state, { type, payload }) {
         searchResults: payload,
         loading: false,
       }
+    case Actions.SAVE_BOOK:
+      return {
+        ...state,
+        savedBooks: [...savedBooks, payload]
+      }
     default: 
       return state
   }

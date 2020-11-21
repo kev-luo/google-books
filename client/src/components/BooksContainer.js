@@ -3,14 +3,27 @@ import { Container, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import BookDetails from './BookDetails';
+import { useBookContext } from '../utils/BookContext';
 
-export default function BooksContainer() {
+export default function BooksContainer({location}) {
   const classes = useStyles();
+  const { state } = useBookContext();
+  const { savedBooks } = state;
+
   return (
     <Container className={classes.root}>
       <Paper className={classes.resultsContainer}>
-        <h3>Results</h3>
-        <BookDetails />
+        {location ? (
+          <>
+            <h3>Saved Books</h3>
+            <BookDetails />
+          </>
+        ) : (
+          <>
+            <h3>Results</h3>
+            <BookDetails />
+          </>
+        )}
       </Paper>
     </Container>
   )

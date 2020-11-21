@@ -3,11 +3,12 @@ import { Paper, Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { useBookContext } from "../utils/BookContext";
+import Actions from '../utils/Actions';
 import API from '../utils/API';
 
 export default function BookDetails() {
   const classes = useStyles();
-  const { state } = useBookContext();
+  const { state, dispatch } = useBookContext();
   const { searchResults, loading } = state;
 
   const handleSave = async({ title, authors, description, imageLinks, infoLink }) => {
@@ -18,7 +19,7 @@ export default function BookDetails() {
       authors,
       description,
     })
-    console.log(savedBook);
+    dispatch({ type: Actions.SAVE_BOOK, payload: savedBook})
   }
 
   return (
