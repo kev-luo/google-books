@@ -1,78 +1,81 @@
-import React, { useContext, useReducer } from 'react';
-import Actions from './Actions';
+import React, { useContext, useReducer } from "react";
+import Actions from "./Actions";
 
 const initialState = {
   searchResults: [],
   savedBooks: [],
   bookDetails: {
-    title: '',
+    title: "",
     authors: [],
-    description: '',
-    image: '',
-    link: '',
+    description: "",
+    image: "",
+    link: "",
   },
   loading: false,
-}
+};
 
 function reducer(state, { type, payload }) {
-  switch(type) {
+  switch (type) {
     case Actions.LOADING:
       return {
         ...state,
-        loading: true
-      }
+        loading: true,
+      };
     case Actions.SEARCH_RESULTS:
       return {
         ...state,
         searchResults: payload,
         loading: false,
-      }
+      };
     case Actions.SAVE_BOOK:
       return {
         ...state,
         savedBooks: [...state.savedBooks, payload],
         loading: false,
-      }
+      };
     case Actions.GET_SAVED_BOOKS:
       return {
         ...state,
         savedBooks: payload,
         loading: false,
-      }
+      };
     case Actions.DELETE_BOOK:
-      const filteredBooks = state.savedBooks.filter(book => {
-        return book._id !== payload
-      })
+      const filteredBooks = state.savedBooks.filter((book) => {
+        return book._id !== payload;
+      });
       return {
         ...state,
         savedBooks: filteredBooks,
         loading: false,
-      }
+      };
     case Actions.UPDATE_SEARCH_RESULTS:
-      const updatedBooks = state.searchResults.filter(book => {
-        return book !== payload
-      })
+      const updatedBooks = state.searchResults.filter((book) => {
+        return book !== payload;
+      });
       return {
         ...state,
-        searchResults: updatedBooks
-      }
-    default: 
-      return state
+        searchResults: updatedBooks,
+      };
+    case Actions.VIEW_DETAILS:
+      return {
+        ...state,
+        bookDetails: payload,
+      };
+    default:
+      return state;
   }
 }
 
-const BookContext = React.createContext(initialState)
+const BookContext = React.createContext(initialState);
 
-const BookProvider = ({...props}) => {
+const BookProvider = ({ ...props }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  return (
-    <BookContext.Provider value={{ state, dispatch }} {...props} />
-  )
-}
+  return <BookContext.Provider value={{ state, dispatch }} {...props} />;
+};
 
 const useBookContext = () => {
   return useContext(BookContext);
-}
+};
 
-export { useBookContext, BookProvider }
+export { useBookContext, BookProvider };

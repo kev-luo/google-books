@@ -13,7 +13,7 @@ export default function SaveButton({ book }) {
 
   const handleDelete = async(book) => {
     await API.deleteBook(book._id);
-    dispatch({type: Actions.DELETE_BOOK, payload: bookId})
+    dispatch({type: Actions.DELETE_BOOK, payload: book._id})
   }
 
   const handleSave = async(book) => {

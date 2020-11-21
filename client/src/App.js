@@ -18,7 +18,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={Search} />
           <Route exact path="/saved" component={Saved} />
-          <Route exact path="/book/:id" component={SingleBook} />
+          <Route exact path="/book/:title" component={SingleBook} />
         </Switch>
       </BookProvider>
     </Router>

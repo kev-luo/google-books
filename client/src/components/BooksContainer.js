@@ -29,12 +29,18 @@ export default function BooksContainer() {
         {location === "/saved" ? (
           <>
             <h3>Saved Books</h3>
-            <BookDetails books={savedBooks} loading={loading} />
+            {loading ||
+              savedBooks.map((book, index) => {
+                return <BookDetails key={index} book={book} />;
+              })}
           </>
         ) : (
           <>
             <h3>Results</h3>
-            <BookDetails books={searchResults} loading={loading} />
+            {loading ||
+              searchResults.map((book, index) => {
+                return <BookDetails key={index} book={book} />;
+              })}
           </>
         )}
       </Paper>
