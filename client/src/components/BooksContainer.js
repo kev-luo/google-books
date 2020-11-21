@@ -8,7 +8,17 @@ import { useBookContext } from '../utils/BookContext';
 export default function BooksContainer({location}) {
   const classes = useStyles();
   const { state } = useBookContext();
-  const { savedBooks } = state;
+  const { savedBooks, searchResults, loading } = state;
+
+  const searchBooks = searchResults.map(result => {
+    return {
+      title: result.title,
+      authors: result.authors,
+      description: result.description,
+      image: result.imageLinks.smallThumbnail,
+      link: result.infoLink,
+    }
+  })
 
   return (
     <Container className={classes.root}>
@@ -16,12 +26,12 @@ export default function BooksContainer({location}) {
         {location ? (
           <>
             <h3>Saved Books</h3>
-            <BookDetails />
+            <BookDetails books={savedBooks} loading={loading}/>
           </>
         ) : (
           <>
             <h3>Results</h3>
-            <BookDetails />
+            <BookDetails books={searchBooks} loading={loading}/>
           </>
         )}
       </Paper>

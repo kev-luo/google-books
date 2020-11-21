@@ -30,7 +30,7 @@ function reducer(state, { type, payload }) {
     case Actions.SAVE_BOOK:
       return {
         ...state,
-        savedBooks: [...savedBooks, payload]
+        savedBooks: [...state.savedBooks, payload]
       }
     default: 
       return state

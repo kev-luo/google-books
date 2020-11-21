@@ -6,20 +6,19 @@ import { useBookContext } from "../utils/BookContext";
 import Actions from '../utils/Actions';
 import API from '../utils/API';
 
-export default function BookDetails() {
+export default function BookDetails({books, loading}) {
   const classes = useStyles();
-  const { state, dispatch } = useBookContext();
-  const { searchResults, loading } = state;
+  const { dispatch } = useBookContext();
 
-  const handleSave = async({ title, authors, description, imageLinks, infoLink }) => {
-    const savedBook = await API.saveBook({
-      image: imageLinks.smallThumbnail,
-      link: infoLink,
+  const handleSave = async({ title, authors, description, image, link }) => {
+    const { data } = await API.saveBook({
       title,
       authors,
       description,
+      image,
+      link,
     })
-    dispatch({ type: Actions.SAVE_BOOK, payload: savedBook})
+    dispatch({ type: Actions.SAVE_BOOK, payload: data})
   }
 
   return (
@@ -29,9 +28,9 @@ export default function BookDetails() {
           <h3>Loading...</h3>
         </Paper>
       ) : (
-        searchResults.map((result) => {
+        books.map((book) => {
           return (
-            <Paper className={classes.root} key={result.industryIdentifiers[1]['identifier']}>
+            <Paper className={classes.root} key={book.link}>
               <Grid container>
                 <Grid
                   item
@@ -41,31 +40,31 @@ export default function BookDetails() {
                   alignItems="center"
                 >
                   <Grid item>
-                    <h3>{result.title}</h3>
+                    <h3>{book.title}</h3>
                   </Grid>
                   <Grid item className={classes.buttons}>
                     <Button variant="contained">View</Button>
-                    <Button variant="contained" onClick={() => handleSave(result)}>Save</Button>
+                    <Button variant="contained" onClick={() => handleSave(book)}>Save</Button>
                   </Grid>
                 </Grid>
                 <Grid item container xs={12}>
                   <Grid item>
                     <h4>
                       Authors:
-                      {result.authors.length > 1
-                        ? result.authors.map((author) => {
+                      {book.authors.length > 1
+                        ? book.authors.map((author) => {
                             return ` ${author} | `;
                           })
-                        : result.authors}
+                        : book.authors}
                     </h4>
                   </Grid>
                 </Grid>
                 <Grid item container spacing={2} xs={12}>
                   <Grid item xs={2}>
-                    <img src={result.imageLinks.smallThumbnail} alt={result.title} />
+                    <img src={book.image} alt={book.title} />
                   </Grid>
                   <Grid item xs={10}>
-                    <p>{result.description}</p>
+                    <p>{book.description}</p>
                   </Grid>
                 </Grid>
               </Grid>
