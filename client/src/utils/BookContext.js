@@ -38,6 +38,15 @@ function reducer(state, { type, payload }) {
         savedBooks: payload,
         loading: false,
       }
+    case Actions.DELETE_BOOK:
+      const filteredBooks = state.savedBooks.filter(book => {
+        return book._id !== payload
+      })
+      return {
+        ...state,
+        savedBooks: filteredBooks,
+        loading: false,
+      }
     default: 
       return state
   }

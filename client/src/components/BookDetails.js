@@ -2,24 +2,10 @@ import React from "react";
 import { Paper, Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { useBookContext } from "../utils/BookContext";
-import Actions from '../utils/Actions';
-import API from '../utils/API';
+import SaveButton from './SaveButton';
 
 export default function BookDetails({books, loading}) {
   const classes = useStyles();
-  const { dispatch } = useBookContext();
-
-  const handleSave = async({ title, authors, description, image, link }) => {
-    const { data } = await API.saveBook({
-      title,
-      authors,
-      description,
-      image,
-      link,
-    })
-    dispatch({ type: Actions.SAVE_BOOK, payload: data})
-  }
 
   return (
     <>
@@ -44,7 +30,7 @@ export default function BookDetails({books, loading}) {
                   </Grid>
                   <Grid item className={classes.buttons}>
                     <Button variant="contained">View</Button>
-                    <Button variant="contained" onClick={() => handleSave(book)}>Save</Button>
+                    <SaveButton book={book}/>
                   </Grid>
                 </Grid>
                 <Grid item container xs={12}>
