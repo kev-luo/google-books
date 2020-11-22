@@ -34,15 +34,21 @@ export default function BookDetails({ book }) {
                 ? book.authors.map((author) => {
                     return ` ${author} | `;
                   })
-                : book.authors}
+                : ` ${book.authors}`}
             </h4>
           </Grid>
         </Grid>
-        <Grid item container spacing={2} xs={12}>
-          <Grid item xs={2}>
-            <img src={book.image} alt={book.title} />
+        <Grid
+          item
+          container
+          spacing={0}
+          xs={12}
+          className={classes.details}
+        >
+          <Grid item lg={2}>
+            <img src={book.image} alt={book.title} className={classes.image} />
           </Grid>
-          <Grid item xs={10}>
+          <Grid item lg={10}>
             <p>{book.description}</p>
           </Grid>
         </Grid>
@@ -60,5 +66,12 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: "0 5px",
     },
+  },
+  image: {
+    maxWidth: "150px",
+    maxHeight: "150px",
+  },
+  details: {
+    marginTop: "10px",
   },
 }));

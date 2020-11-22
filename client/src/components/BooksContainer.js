@@ -37,10 +37,11 @@ export default function BooksContainer() {
         ) : (
           <>
             <h3>Results</h3>
-            {loading ||
-              searchResults.map((book, index) => {
-                return <BookDetails key={index} book={book} />;
-              })}
+            {searchResults.length > 0
+              ? searchResults.map((book, index) => {
+                  return <BookDetails key={index} book={book} />;
+                })
+              : searchResults}
           </>
         )}
       </Paper>
