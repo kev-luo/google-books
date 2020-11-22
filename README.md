@@ -13,7 +13,6 @@ This is a full stack google books search app. Saved books are stored on Mongodb.
 * [Installation](#Installation)
 * [Usage](#Usage)
 * [License](#License)
-* [Contributing](#Contributing)
 * [Tests](#Tests)
 * [Questions](#Questions)
 
