@@ -4,7 +4,9 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/kev-luo/google-books)
 
 ## Description
-A full stack google books search app. Saved books are stored on Mongodb.
+[Deployed Site](https://g-books-mern.herokuapp.com/)
+
+This is a full stack google books search app. Saved books are stored on Mongodb. Building this taught me about dealing with spotty api results. To elaborate, in order to handle results with missing properties, I used ternary operators to provide default values to store in state. The process of creating this app also helped solidify my understanding of short circuiting to conditionally render components.
 
 ## Table of Contents
 
@@ -19,18 +21,14 @@ A full stack google books search app. Saved books are stored on Mongodb.
     npm install
 
 ## Usage
-
+Search for a book title 
+![app-demo](assets/google-books-search.gif)
 
 ## License
 Licensed under the [MIT](https://opensource.org/licenses/MIT) License.
 
-## Contributing
-
-
 ## Tests
     npm run test
 
-
 ## Questions
-![github profile pic](https://github.com/kev-luo.png?size=100)
 * [kvn.luo@gmail.com](kvn.luo@gmail.com)
