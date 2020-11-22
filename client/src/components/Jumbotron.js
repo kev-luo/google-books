@@ -1,10 +1,9 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import { Container, Paper } from '@material-ui/core';
-
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Container, Paper } from "@material-ui/core";
 
 export default function Jumbotron() {
-  const classes=useStyles();
+  const classes = useStyles();
   return (
     <Container className={classes.root}>
       <Paper className={classes.jumbotron}>
@@ -12,17 +11,17 @@ export default function Jumbotron() {
         <h2 className={classes.title}>Search for and save books of interest</h2>
       </Paper>
     </Container>
-  )
+  );
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: '20px',
+    marginTop: "20px",
   },
   title: {
-    textAlign: 'center',
+    textAlign: "center",
   },
   jumbotron: {
-    padding: '30px 0',
-  }
-}))
+    padding: "30px 0",
+  },
+}));
