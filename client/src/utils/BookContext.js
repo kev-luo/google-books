@@ -41,20 +41,12 @@ function reducer(state, { type, payload }) {
       };
     case Actions.DELETE_BOOK:
       const filteredBooks = state.savedBooks.filter((book) => {
-        return book._id !== payload;
+        return book.googleId !== payload;
       });
       return {
         ...state,
         savedBooks: filteredBooks,
         loading: false,
-      };
-    case Actions.UPDATE_SEARCH_RESULTS:
-      const updatedBooks = state.searchResults.filter((book) => {
-        return book !== payload;
-      });
-      return {
-        ...state,
-        searchResults: updatedBooks,
       };
     case Actions.VIEW_DETAILS:
       return {

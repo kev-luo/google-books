@@ -7,7 +7,6 @@ import BookDetails from '../components/BookDetails'
 export default function SingleBook() {
   const classes = useStyles();
   const { state } = useBookContext();
-  console.log(window.location.pathname.split('/').length);
   return (
     <div className={classes.root}>
       <BookDetails book={state.bookDetails}/>

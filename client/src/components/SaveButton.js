@@ -7,23 +7,29 @@ import API from "../utils/API";
 
 export default function SaveButton({ book }) {
   const { state, dispatch } = useBookContext();
-  const location = window.location.pathname;
-  const { bookDetails } = state
+  const { savedBooks } = state
 
   const handleDelete = async (book) => {
-    await API.deleteBook(book._id);
-    dispatch({ type: Actions.DELETE_BOOK, payload: book._id });
+    await API.deleteBook(book.googleId);
+    dispatch({ type: Actions.DELETE_BOOK, payload: book.googleId });
   };
 
   const handleSave = async (book) => {
     const { data } = await API.saveBook(book);
     dispatch({ type: Actions.SAVE_BOOK, payload: data });
-    dispatch({ type: Actions.UPDATE_SEARCH_RESULTS, payload: book });
   };
+
+  const isBookSaved = () => {
+    const currentBookId = book.googleId
+    const savedCount = savedBooks.reduce((acc, val) => {
+      return acc + (currentBookId === val.googleId)
+    }, 0)
+    return savedCount;
+  }
 
   return (
     <>
-      {location === "/saved" || bookDetails._id ? (
+      {isBookSaved() ? (
         <Button variant="contained" onClick={() => handleDelete(book)}>
           Unsave
         </Button>
