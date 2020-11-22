@@ -1,13 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
 
-import Search from './pages/Search';
-import Saved from './pages/Saved';
-import SingleBook from './pages/SingleBook';
-import Nav from './components/Nav';
-import Jumbotron from './components/Jumbotron';
-import { BookProvider } from './utils/BookContext';
+import Search from "./pages/Search";
+import Saved from "./pages/Saved";
+import SingleBook from "./pages/SingleBook";
+import Nav from "./components/Nav";
+import Jumbotron from "./components/Jumbotron";
+import { BookProvider } from "./utils/BookContext";
 
 export default function App() {
   return (
@@ -22,5 +22,5 @@ export default function App() {
         </Switch>
       </BookProvider>
     </Router>
-  )
+  );
 }

@@ -21,15 +21,15 @@ export default function SearchForm() {
     const { data } = await API.searchTitle(title);
     console.log(data);
     const bookResults = data.map((result) => {
-      const { volumeInfo } = result
+      const { volumeInfo } = result;
       return {
         title: volumeInfo.title,
         authors: volumeInfo.authors,
         description: volumeInfo.description,
         image: volumeInfo.imageLinks.smallThumbnail,
         link: volumeInfo.infoLink,
-        googleId: result.id
-      }
+        googleId: result.id,
+      };
     });
     dispatch({ type: Actions.SEARCH_RESULTS, payload: bookResults });
     setTitle("");

@@ -7,7 +7,7 @@ import API from "../utils/API";
 
 export default function SaveButton({ book }) {
   const { state, dispatch } = useBookContext();
-  const { savedBooks } = state
+  const { savedBooks } = state;
 
   const handleDelete = async (book) => {
     await API.deleteBook(book.googleId);
@@ -20,12 +20,12 @@ export default function SaveButton({ book }) {
   };
 
   const isBookSaved = () => {
-    const currentBookId = book.googleId
+    const currentBookId = book.googleId;
     const savedCount = savedBooks.reduce((acc, val) => {
-      return acc + (currentBookId === val.googleId)
-    }, 0)
+      return acc + (currentBookId === val.googleId);
+    }, 0);
     return savedCount;
-  }
+  };
 
   return (
     <>

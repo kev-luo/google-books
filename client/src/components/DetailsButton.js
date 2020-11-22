@@ -16,19 +16,17 @@ export default function DetailsButton({ book }) {
 
   return (
     <>
-    {window.location.pathname.split("/").length > 2 ? (
-      <a className={classes.details} href={book.link} target="_blank">
-        <Button variant="contained">
-          Visit Google Books
-        </Button>
-      </a>
-    ) : (
-      <Link className={classes.details} to={`/book/${book.title}`}>
-        <Button variant="contained" onClick={() => handleDetailView(book)}>
-          View
-        </Button>
-      </Link>
-    )}
+      {window.location.pathname.split("/").length > 2 ? (
+        <a className={classes.details} href={book.link} target="_blank">
+          <Button variant="contained">Visit Google Books</Button>
+        </a>
+      ) : (
+        <Link className={classes.details} to={`/book/${book.title}`}>
+          <Button variant="contained" onClick={() => handleDetailView(book)}>
+            View
+          </Button>
+        </Link>
+      )}
     </>
   );
 }
