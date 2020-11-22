@@ -19,15 +19,17 @@ export default function SearchForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { data } = await API.searchTitle(title);
-    const response = data.map((result) => result.volumeInfo);
-    const bookResults = response.map((book) => {
+    console.log(data);
+    const bookResults = data.map((result) => {
+      const { volumeInfo } = result
       return {
-        title: book.title,
-        authors: book.authors,
-        description: book.description,
-        image: book.imageLinks.smallThumbnail,
-        link: book.infoLink,
-      };
+        title: volumeInfo.title,
+        authors: volumeInfo.authors,
+        description: volumeInfo.description,
+        image: volumeInfo.imageLinks.smallThumbnail,
+        link: volumeInfo.infoLink,
+        googleId: result.id
+      }
     });
     dispatch({ type: Actions.SEARCH_RESULTS, payload: bookResults });
     setTitle("");

@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 
 import { useBookContext } from "../utils/BookContext";
@@ -7,9 +6,9 @@ import Actions from "../utils/Actions";
 import API from "../utils/API";
 
 export default function SaveButton({ book }) {
-  const classes = useStyles();
-  const { dispatch } = useBookContext();
+  const { state, dispatch } = useBookContext();
   const location = window.location.pathname;
+  const { bookDetails } = state
 
   const handleDelete = async (book) => {
     await API.deleteBook(book._id);
@@ -24,7 +23,7 @@ export default function SaveButton({ book }) {
 
   return (
     <>
-      {location === "/saved" ? (
+      {location === "/saved" || bookDetails._id ? (
         <Button variant="contained" onClick={() => handleDelete(book)}>
           Unsave
         </Button>
@@ -36,7 +35,3 @@ export default function SaveButton({ book }) {
     </>
   );
 }
-
-const useStyles = makeStyles((theme) => ({
-  root: {},
-}));

@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper, Grid, Button } from "@material-ui/core";
+import { Paper, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import SaveButton from "./SaveButton";
@@ -22,9 +22,7 @@ export default function BookDetails({ book }) {
             <h3>{book.title}</h3>
           </Grid>
           <Grid item className={classes.buttons}>
-            {window.location.pathname.split("/").length > 2 || (
-              <DetailsButton book={book} />
-            )}
+            <DetailsButton book={book} />
             <SaveButton book={book} />
           </Grid>
         </Grid>
